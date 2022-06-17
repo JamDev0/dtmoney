@@ -1,0 +1,9 @@
+.section {
+    display: grid;
+    grid-template-columns: 49% 18.5% 21.7% 10.4%;
+    @apply bg-brand-shape rounded-[5px] px-8
+}
+
+.section p {
+    @apply py-[20px] min-w-min
+}

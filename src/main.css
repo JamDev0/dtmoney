@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+    @apply m-0 box-border p-0 font-poppins
+}
+
+*:focus {
+    @apply outline outline-2 outline-offset-2 outline-brand-text-title
+}
+
+body {
+    @apply bg-brand-background
+}

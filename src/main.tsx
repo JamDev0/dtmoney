@@ -29,6 +29,15 @@ createServer({
           amount: 700,
           type: 'deposit',
           date: [2022, 5, 13, 14, 0],
+        },
+
+        {
+          id: 3,
+          title: 'Venda do pc',
+          category: 'Venda',
+          amount: 1500,
+          type: 'deposit',
+          date: [2022, 5, 13, 14, 0],
         }
       ]
     });

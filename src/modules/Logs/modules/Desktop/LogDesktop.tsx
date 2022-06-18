@@ -34,7 +34,7 @@ export function LogDesktop({title, category, amount, type, date}: LogDesktopProp
                 ${isThisQuantityPositive() ? 'text-brand-green' : 'text-brand-red'}
              `}
             >
-                {isThisQuantityPositive() ? `R$ ${amount}` : `-R$ ${amount}`}
+                {isThisQuantityPositive() ? `R$ ${new Intl.NumberFormat().format(amount)}` : `-R$ ${new Intl.NumberFormat().format(amount)}`}
             </p>
 
             <p

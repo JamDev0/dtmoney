@@ -1,7 +1,9 @@
 import Modal from 'react-modal';
 
 import { ArrowCircleDown, ArrowCircleUp, X } from 'phosphor-react';
-import { useState } from 'react';
+
+import { FormEvent, useState } from 'react';
+import { useTransactions } from '../hooks/useTransactions';
 
 
 Modal.setAppElement('#root');
@@ -12,11 +14,14 @@ interface NewTransactionModalProps {
 }   
 
 export function NewTransactionModal({isModalOpen, closeTransactionModalFunction}:NewTransactionModalProps) {
+    const { createNewTransaction } = useTransactions();
+
+    
     const [isDepositOptionSelected, setIsDepositOptionSelected] = useState<boolean>(false);
     const [isWithdrawnOptionSelected, setIsWithdrawnOptionSelected] = useState<boolean>(false);
 
     const [titleValue, setTitleValue] = useState<string>('');
-    const [amountValue, setAmountValue] = useState<number | undefined>(undefined);
+    const [amountValue, setAmountValue] = useState<number>(0);
     const [categoryValue, setCategoryValue] = useState<string>('');
 
     function handleWithdrawnSelection() {
@@ -34,8 +39,21 @@ export function NewTransactionModal({isModalOpen, closeTransactionModalFunction}
         setIsWithdrawnOptionSelected(false);
 
         setTitleValue('');
-        setAmountValue(undefined);
+        setAmountValue(0);
         setCategoryValue('')
+    }
+
+    async function handleFormSubmit(event: FormEvent) {
+        event.preventDefault();
+
+        await createNewTransaction({
+            title: titleValue,
+            amount: amountValue,
+            category: categoryValue,
+            type: isDepositOptionSelected ? 'deposit' : 'withdrawn'
+        });
+
+        closeTransactionModalFunction();
     }
 
     return(
@@ -57,11 +75,24 @@ export function NewTransactionModal({isModalOpen, closeTransactionModalFunction}
              onRequestClose={closeTransactionModalFunction}
              onAfterClose={modalCloseCallbacks}
             >
+                <X
+                 data-title='Cancelar nova transação'
+                 role="button"
+                 tabIndex={0}
+                 className='
+                    absolute top-[21px] right-[21px] cursor-pointer w-6 h-6 transition duration-300
+                    hover:opacity-50
+                 '
+                 onKeyDown={ event => event.key == 'Enter' ? closeTransactionModalFunction() : null}
+                 onClick={closeTransactionModalFunction}
+                />
+
                 
                 <form
                  className='
                     flex flex-col gap-y-[16px]
                  '
+                 onSubmit={handleFormSubmit}
                 >
                     <h2 className='text-2xl text-brand-text-title font-semibold mb-[16px]'>
                         Cadastrar transação
@@ -100,6 +131,7 @@ export function NewTransactionModal({isModalOpen, closeTransactionModalFunction}
                              ${isDepositOptionSelected ? 'bg-brand-green border-brand-green' : 'bg-transparent'}
                              hover:border-brand-green
                          `}
+                         onKeyDown={ event => event.key === 'Enter' ? handleDepositSelection() : null}
                          onClick={handleDepositSelection}
                         >
                             <ArrowCircleUp
@@ -120,13 +152,14 @@ export function NewTransactionModal({isModalOpen, closeTransactionModalFunction}
                         </div>
 
                         <div
-                         title='button'
+                         role='button'
                          tabIndex={0}
                          className={`
                              py-5 border-[1.5px] border-solid border-brand-text-body flex justify-center gap-x-4 grow rounded-[5px] cursor-pointer transition duration-200
                              ${isWithdrawnOptionSelected ? 'bg-brand-red border-brand-red' : 'bg-transparent'}
                              hover:border-brand-red
                          `}
+                         onKeyDown={ event => event.key === 'Enter' ? handleWithdrawnSelection() : null}
                          onClick={handleWithdrawnSelection}
                         >
                             <ArrowCircleDown
@@ -167,16 +200,6 @@ export function NewTransactionModal({isModalOpen, closeTransactionModalFunction}
                         Cadastrar
                     </button>
                 </form>
-
-                <X
-                 data-title='button'
-                 tabIndex={0}
-                 className='
-                    absolute top-[21px] right-[21px] cursor-pointer w-6 h-6 transition duration-300
-                    hover:opacity-50
-                 '
-                 onClick={closeTransactionModalFunction}
-                />
             </Modal>
     )
 }

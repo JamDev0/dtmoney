@@ -37,7 +37,7 @@ export function LogMobile({title, category, amount, type, date}: LogMobileProps)
                     text-xl
                 `}
                 >
-                    {isThisTransactionADeposit() ? `R$ ${amount}` : `-R$ ${amount}`}
+                    {isThisTransactionADeposit() ? `R$ ${new Intl.NumberFormat().format(amount)}` : `-R$ ${new Intl.NumberFormat().format(amount)}`}
                 </p>
             </div>
             

@@ -7,19 +7,13 @@ import { useMediaQuery } from 'react-responsive';
 
 import styles from './index.module.css';
 
-interface LogsProps {
-    transactions: {
-        id: number;
-        title: string;
-        category: string;
-        amount: number;
-        type: 'withdrawn' | 'deposit' ;
-        date: [number, number, number, number, number];
-    }[] | []
-}
+import { useTransactions } from "../../hooks/useTransactions";
 
-export function Logs({transactions}:LogsProps) {    
+export function Logs() {    
     const isMobile = !useMediaQuery({ query: '(min-width: 1000px)' });
+    
+    const {transactions} = useTransactions();
+
 
     return(
         <section

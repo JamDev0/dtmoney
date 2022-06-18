@@ -5,41 +5,49 @@ import App from './App';
 
 import './main.css';
 
-import { createServer } from 'miragejs'
+import { createServer, Model } from 'miragejs'
+import { DateTime } from 'luxon';
 
 createServer({
+  models: {
+    transaction: Model,
+  },
+
+  seeds(server) {
+    server.db.loadData({
+      transactions: [
+        {
+          id: 1,
+          title: 'Teste',
+          category: 'Teste',
+          amount: 1000,
+          type: 'withdrawn',
+          date: [2020, 3, 15, 8, 0],
+        },
+        {
+          id: 2,
+          title: 'Teste',
+          category: 'Teste',
+          amount: 1500,
+          type: 'deposit',
+          date: [2020, 3, 15, 8, 0],
+        },
+      ]
+    })
+  },
+
   routes() {
     this.namespace = 'api';
 
+    this.post('/transactions', (schema, req) => {
+      let data = JSON.parse(req.requestBody);
+
+      
+      return schema.create('transaction', data);
+    });
+
     this.get('/transactions', () => {
-      return [
-        {
-          id: 1,
-          title: 'Compra do mês',
-          category: 'market',
-          amount: 500,
-          type: 'withdrawn',
-          date: [2022, 5, 13, 14, 0],
-        },
-
-        {
-          id: 2,
-          title: 'Compra do mês',
-          category: 'market',
-          amount: 700,
-          type: 'deposit',
-          date: [2022, 5, 13, 14, 0],
-        },
-
-        {
-          id: 3,
-          title: 'Venda do pc',
-          category: 'Venda',
-          amount: 1500,
-          type: 'deposit',
-          date: [2022, 5, 13, 14, 0],
-        }
-      ]
+      return this.schema.all('transaction')
     });
   }
 })

@@ -3,11 +3,10 @@ import Logo from '../assets/Logo.svg';
 import { useState } from 'react';
 
 interface HeaderProps {
-    closeModalFunction?: () => void;
     openModalFunction: () => void;
 }
 
-export function Header({closeModalFunction, openModalFunction}:HeaderProps) {
+export function Header({openModalFunction}:HeaderProps) {
 
     
 
@@ -29,6 +28,7 @@ export function Header({closeModalFunction, openModalFunction}:HeaderProps) {
                     w-[8.4rem] h-[1.8rem]
                     md:w-[10.75rem] md:h-[2.5rem]
                 '
+                alt='dtmoney (Logo do site)'
                 src={Logo}
                 ></img>
 
@@ -38,7 +38,7 @@ export function Header({closeModalFunction, openModalFunction}:HeaderProps) {
                     hover:filter hover:brightness-90 
                     md:h-[2.5rem] md:text-base md:px-8
                 '
-                onClick={openModalFunction}
+                onClick={event => {openModalFunction(); event.currentTarget.blur()}}
                 >
                     Nova transação
                 </button>

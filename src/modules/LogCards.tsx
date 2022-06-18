@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 
 interface LogCardsProps {
     type: 'output' | 'input' | 'total';
-    quantity: number;
+    quantity: string;
     date?: number;
 }
 
@@ -59,7 +59,7 @@ export function LogCards({type, quantity, date}:LogCardsProps) {
     }
 
     function isThisQuantityPositive() {
-        return Math.sign(quantity) === 1;
+        return Math.sign(Number(quantity)) === 1;
     }
 
     console.log(isThisLogCardAnTotalType(), isThisQuantityPositive())
@@ -71,7 +71,7 @@ export function LogCards({type, quantity, date}:LogCardsProps) {
             ${isThisLogCardAnTotalType() && !isThisQuantityPositive() ? 'bg-brand-red' : ''}
             ${!isThisLogCardAnTotalType() ? 'bg-brand-shape' : ''}
             w-[300px] rounded-[5px] relative p-[23px] grow-0 shrink-0
-            md:grow md:shrink
+            md:grow md:shrink 
          `}
         >
             <h3

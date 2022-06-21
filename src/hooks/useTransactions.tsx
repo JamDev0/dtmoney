@@ -59,6 +59,16 @@ export function TransactionsProvider({children}: transactionsProviderProps) {
             api.post('/transactions', data);
 
             setTransactions( (current) => {return [data ,...current]})
+
+
+            
+            let LocalTransactions = JSON.parse(localStorage.getItem('Transactions')?? '[]');
+
+            if(LocalTransactions === null) {
+                LocalTransactions = [];
+            }
+
+            localStorage.setItem('Transactions', JSON.stringify([...LocalTransactions, data]));
         });
 
     }

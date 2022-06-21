@@ -1,18 +1,13 @@
-import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from 'phosphor-react';
+import { DateTime } from "luxon";
+import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar, IconProps } from "phosphor-react";
 
-import { useMediaQuery } from 'react-responsive';
-
-interface LogCardsProps {
+interface MobileProps {
     type: 'output' | 'input' | 'total';
     quantity: string;
-    date?: number;
+    date?: [number, number, number, number, number];
 }
 
-console.log(Math.sign(-5))
-
-export function LogCards({type, quantity, date}:LogCardsProps) {
-    const isMobile = !useMediaQuery({ query: '(min-width: 1000px)' });
-
+export function Mobile({quantity, type, date}: MobileProps) {
     function defineCurrentIcon() {
         switch(type) {
             case 'output': 
@@ -59,10 +54,12 @@ export function LogCards({type, quantity, date}:LogCardsProps) {
     }
 
     function isThisQuantityPositive() {
-        return Math.sign(Number(quantity)) === 1;
+        if(Number(quantity) === 0) {
+            return true;
+        } else {
+            return Math.sign(Number(quantity)) === 1;
+        }
     }
-
-    console.log(isThisLogCardAnTotalType(), isThisQuantityPositive())
 
     return(
         <section
@@ -71,14 +68,12 @@ export function LogCards({type, quantity, date}:LogCardsProps) {
             ${isThisLogCardAnTotalType() && !isThisQuantityPositive() ? 'bg-brand-red' : ''}
             ${!isThisLogCardAnTotalType() ? 'bg-brand-shape' : ''}
             w-[300px] rounded-[5px] relative p-[23px] grow-0 shrink-0
-            md:grow md:shrink 
          `}
         >
             <h3
              className={`
                 ${isThisLogCardAnTotalType() ? 'text-brand-shape' : 'text-brand-text-title'}
                 text-sm mb-[55.5px]
-                md:mb-[14.5px] md:text-base
              `}
             >
                 {defineCurrentTitle()}
@@ -88,20 +83,28 @@ export function LogCards({type, quantity, date}:LogCardsProps) {
                  className={`
                     ${isThisLogCardAnTotalType() ? 'text-brand-shape' : 'text-brand-text-title'}
                     text-3xl
-                    md:text-4xl 
                  `}
                 >
                     R$ {quantity} 
                 </h2>
                 {
-                    isMobile && type !== 'total' ?
+                    type !== 'total' ?
                         <span
                          className={`
                             ${isThisLogCardAnTotalType() ? 'text-brand-shape' : 'text-brand-text-body'}
                             text-xs
                          `}
                         >
-                            Última {type === 'input' ? 'entrada' : 'saída'} {date}
+                            {
+                                date![0] > 0 ?
+                                    (
+                                        `Última ${type === 'input' ? 'entrada' : 'saída'} ${DateTime.local(date![0], date![1], date![2], date![3], date![4]).toRelative()}`
+                                    )
+                                :
+                                    null
+                            }
+
+                            
                         </span>
                     :
                         null

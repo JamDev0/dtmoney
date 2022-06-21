@@ -8,6 +8,12 @@ import './main.css';
 import { createServer, Model } from 'miragejs'
 import { DateTime } from 'luxon';
 
+let LocalTransactions = JSON.parse(localStorage.getItem('Transactions')?? '[]');
+
+if(LocalTransactions === null) {
+  LocalTransactions = [];
+}
+
 createServer({
   models: {
     transaction: Model,
@@ -16,22 +22,7 @@ createServer({
   seeds(server) {
     server.db.loadData({
       transactions: [
-        {
-          id: 1,
-          title: 'Teste',
-          category: 'Teste',
-          amount: 1000,
-          type: 'withdrawn',
-          date: [2020, 3, 15, 8, 0],
-        },
-        {
-          id: 2,
-          title: 'Teste',
-          category: 'Teste',
-          amount: 1500,
-          type: 'deposit',
-          date: [2020, 3, 15, 8, 0],
-        },
+        ...LocalTransactions
       ]
     })
   },

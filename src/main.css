@@ -12,5 +12,5 @@
 }
 
 body {
-    @apply bg-brand-background
+    @apply bg-brand-background max-w-full
 }

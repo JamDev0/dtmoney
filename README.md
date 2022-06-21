@@ -5,6 +5,4 @@ Acesso: https://dtmoney-swart-mu.vercel.app/
 Site para monitorar suas finanças
 
 ### Versão atual
-Layout completo, interações completas, funcionalidades de adicionar e resgatar transações do db,modal completo.
-
-Falta terminar o modal no mobile e também falta fazer a funcionalidade de arrastar os card logs no mobile.
+Layout mobile e desktop completo, interações completas, funcionalidades de adicionar e resgatar transações do db, localStorage e modal completo.

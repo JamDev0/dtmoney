@@ -16,35 +16,53 @@ Layout mobile e desktop completo, interações completas, funcionalidades de adi
   
   <br>
   
-   👉 [reactjs](https://github.com/facebook/react) com [typescript](https://github.com/Microsoft/TypeScript) 
+   👉 [reactjs](https://github.com/facebook/react) com [typescript](https://github.com/Microsoft/TypeScript);
    
-   👉 [react_svg](https://github.com/tanem/react-svg);
-   
-   👉 [tailwind](https://github.com/tailwindlabs/tailwindcss);
-   
-   👉 [headlessui](https://github.com/tailwindlabs/headlessui)
+   👉 [tailwind](https://github.com/tailwindlabs/tailwindcss)
    
   <br>
   <br>
   
   🖼️ Icones:
 
-   👉 [phorsphor_icons](https://github.com/phosphor-icons/phosphor-react);
+   👉 [phorsphor_icons](https://github.com/phosphor-icons/phosphor-react)
+  
+  <br>
+  <br>
+  
+  📃 Desenvolvimento do modal:
+  
+   👉 [react-modal](https://github.com/reactjs/react-modal)
+   
+  <br>
+  <br>
+  
+  <br>
+  <br>
+  
+   🖥️ Responsividade:
+    
+    👉 [react-responsive](https://github.com/yocontra/react-responsive)
+    
+  <br>
+  <br>
+  
+  👇 Funcionalidade de deslize (mobile)
+  
+   👉 [swiper](https://github.com/nolimits4web/Swiper)
   
   <br>
   <br>
 
-  🤲 Requisições:
+  🤲 Backend:
 
-   👉 [apollo](https://github.com/apollographql/apollo-client);
+   👉 [axios](https://github.com/axios/axios);
    
-   👉 [graphql](https://github.com/graphql/graphql-js);
-   
-   👉 [graphql_codegen](https://github.com/dotansimha/graphql-code-generator)
+   👉 [miragejs](https://github.com/miragejs/miragejs)
 
   <br>
   <br>
   
-  🗣️ Tradução:
+  🗓️ Manipulação de datas:
 
-   👉 [translate](https://github.com/franciscop/translate)
+   👉 [luxon](https://github.com/moment/luxon)

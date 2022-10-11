@@ -33,21 +33,19 @@ Layout mobile e desktop completo, interações completas, funcionalidades de adi
   📃 Desenvolvimento do modal:
   
    👉 [react-modal](https://github.com/reactjs/react-modal)
-   
-  <br>
-  <br>
+  
   
   <br>
   <br>
   
    🖥️ Responsividade:
-    
-    👉 [react-responsive](https://github.com/yocontra/react-responsive)
+   
+   👉 [react-responsive](https://github.com/yocontra/react-responsive)
     
   <br>
   <br>
   
-  👇 Funcionalidade de deslize (mobile)
+  👇 Funcionalidade de deslize (mobile):
   
    👉 [swiper](https://github.com/nolimits4web/Swiper)
   
